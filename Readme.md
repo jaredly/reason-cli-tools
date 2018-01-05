@@ -29,7 +29,7 @@ let execSync: (~cmd: string, ~onOut: string => unit=?, unit) => (list(string), b
 let exec: (~cmd: string, ~onOut: string => unit) => job;
 
 /**
- * Returns a poll function, and a close function. Checks every `checkInterval`
+ * Checks every `checkInterval`
  * to see if the command has died, and if so it restarts it, calling `onStart`.
  * It also calls `onStart` initially.
  *
