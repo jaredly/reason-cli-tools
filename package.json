@@ -1,0 +1,21 @@
+{
+  "name": "reason-cli-tools",
+  "version": "1.0.0",
+  "keywords": [
+    "BuckleScript",
+    "OCaml",
+    "Reason"
+  ],
+  "author": "Jared Forsyth",
+  "license": "MIT",
+  "scripts": {
+    "build": "bsb -make-world -backend native",
+    "watch": "bsb -make-world -backend native -w",
+    "js": "bsb -make-world -backend js",
+    "js:watch": "bsb -make-world -backend js -w",
+    "clean": "bsb -clean-world"
+  },
+  "dependencies": {
+    "bs-platform": "bsansouci/bsb-native#fast"
+  }
+}

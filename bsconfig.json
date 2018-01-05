@@ -1,0 +1,26 @@
+{
+  "name": "reason-cli-tools",
+  "bsc-flags": "-w -27 -g",
+  "warnings": {
+    "number": "-40+6+7-26-27+32..39-28-44+45",
+    "error": "+8",
+  },
+  "sources": [
+    {"dir": "./src",
+      "children": [
+        {"backend": "native", "dir": "native"},
+        {"backend": "bytecode", "dir": "native"},
+        {"backend": "js", "dir": "js"}
+      ]
+    },
+  ],
+  "package-specs": ["commonjs", "es6"],
+  "entries": [{
+    "backend": "native",
+    "main-module": "ReasonCliTools"
+  },{
+    "backend": "js",
+    "main-module": "ReasonCliTools"
+  }],
+  "refmt": 3
+}
