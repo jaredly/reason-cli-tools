@@ -6,21 +6,17 @@
     "error": "+8",
   },
   "sources": [
-    {"dir": "./src",
-      "children": [
-        {"backend": "native", "dir": "native"},
-        {"backend": "bytecode", "dir": "native"},
-        {"backend": "js", "dir": "js"}
-      ]
-    },
+    {"dir": "src",
+    "subdirs": [
+      {"backend": "native", "dir": "native"}
+    ]},
+    {"dir": "test", "type": "dev"},
+    // bsb-native can't handle having two files of the same name yet
+    // {"backend": "js", "dir": "src/js"}
   ],
-  "package-specs": ["commonjs", "es6"],
   "entries": [{
     "backend": "native",
-    "main-module": "ReasonCliTools"
-  },{
-    "backend": "js",
-    "main-module": "ReasonCliTools"
+    "main-module": "Test"
   }],
   "refmt": 3
 }
