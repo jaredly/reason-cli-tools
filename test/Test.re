@@ -13,9 +13,11 @@ let ensure = (bool, message) => {
 let report = () => {
   print_newline();
   if (failures^ == 0) {
-    print_endline("Success! All " ++ string_of_int(tests^) ++ " tests passed")
+    print_endline("Success! All " ++ string_of_int(tests^) ++ " tests passed");
+    exit(0);
   } else {
-    print_endline("Failures: " ++ string_of_int(failures^) ++ " / " ++ string_of_int(tests^))
+    print_endline("Failures: " ++ string_of_int(failures^) ++ " / " ++ string_of_int(tests^));
+    exit(1);
   }
 };
 
