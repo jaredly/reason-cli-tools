@@ -1,7 +1,7 @@
 /**
  * Get the output of a command, in lines.
  */
-let readCommand = (~cmd, ~onOut=?, ()) => {
+let execSync = (~cmd, ~onOut=?, ()) => {
   let chan = Unix.open_process_in(cmd);
   try {
     let rec loop = () =>
@@ -32,7 +32,7 @@ let canRead = (desc) => {
   r != []
 };
 
-let pollableCommand = (~cmd, ~onOut) => {
+let exec = (~cmd, ~onOut) => {
   let proc = Unix.open_process_in(cmd);
   let desc = Unix.descr_of_in_channel(proc);
   let buffer_size = 8192;

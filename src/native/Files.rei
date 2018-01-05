@@ -1,5 +1,7 @@
 
 let exists: string => bool;
+let isFile: string => bool;
+let isDirectory: string => bool;
 let mkdirp: string => unit;
 
 let readDirectory: string => list(string);

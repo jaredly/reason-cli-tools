@@ -1,5 +1,6 @@
 {
   "name": "reason-cli-tools",
+  "namespace": true,
   "bsc-flags": "-w -27 -g",
   "warnings": {
     "number": "-40+6+7-26-27+32..39-28-44+45",
@@ -8,14 +9,16 @@
   "sources": [
     {"dir": "src",
     "subdirs": [
-      {"backend": "native", "dir": "native"}
+      {"backend": "native", "dir": "native"},
+      {"backend": "js", "dir": "js"}
     ]},
     {"dir": "test", "type": "dev"},
-    // bsb-native can't handle having two files of the same name yet
-    // {"backend": "js", "dir": "src/js"}
   ],
   "entries": [{
     "backend": "native",
+    "main-module": "Test"
+  }, {
+    "backend": "js",
     "main-module": "Test"
   }],
   "refmt": 3

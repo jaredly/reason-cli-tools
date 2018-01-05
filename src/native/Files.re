@@ -63,6 +63,16 @@ let exists = (path) =>
   | Some(_) => true
   };
 
+let isFile = path => switch (maybeStat(path)) {
+| Some({Unix.st_kind: Unix.S_REG}) => true
+| _ => false
+};
+
+let isDirectory = path => switch (maybeStat(path)) {
+| Some({Unix.st_kind: Unix.S_DIR}) => true
+| _ => false
+};
+
 let readDirectory = (dir) => {
   let maybeGet = (handle) =>
     try (Some(Unix.readdir(handle))) {

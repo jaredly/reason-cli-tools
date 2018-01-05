@@ -1,13 +1,12 @@
+
+open Types;
+
 /**
  * Get the output of a command, in lines, and whether it succeeded.
  */
-let readCommand: (~cmd: string, ~onOut: string => unit=?, unit) => (list(string), bool);
+let execSync: (~cmd: string, ~onOut: string => unit=?, unit) => (list(string), bool);
 
-/**
- * Returns a poll function, and a close function. Useful for running
- * multiple commands in parallel, without needing any special async libraries.
- */
-let pollableCommand: (~cmd: string, ~onOut: string => unit) => (unit => unit, unit => unit);
+let exec: (~cmd: string, ~onOut: string => unit) => asyncJob;
 
 /**
  * Returns a poll function, and a close function. Checks every `checkInterval`
@@ -24,5 +23,4 @@ let keepAlive:
     ~onStart: unit => unit=?,
     ~checkInterval: float=?,
     unit
-  ) =>
-  (unit => unit, unit => unit);
+  ) => asyncJob;
