@@ -1,12 +1,11 @@
 
-open Types;
 
 /**
  * Get the output of a command, in lines, and whether it succeeded.
  */
 let execSync: (~cmd: string, ~onOut: string => unit=?, unit) => (list(string), bool);
 
-let exec: (~cmd: string, ~onOut: string => unit) => asyncJob;
+let exec: (~cmd: string, ~onOut: string => unit) => Async.job;
 
 /**
  * Returns a poll function, and a close function. Checks every `checkInterval`
@@ -23,4 +22,4 @@ let keepAlive:
     ~onStart: unit => unit=?,
     ~checkInterval: float=?,
     unit
-  ) => asyncJob;
+  ) => Async.job;
