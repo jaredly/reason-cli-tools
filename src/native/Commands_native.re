@@ -1,3 +1,5 @@
+type job = (unit => unit, unit => unit);
+
 /**
  * Get the output of a command, in lines.
  */
@@ -96,3 +98,11 @@ let keepAlive = (~cmd, ~onOut=line => (), ~onErr=line => (), ~onStart=() => (), 
   };
   (poll, close)
 };
+
+let poll = ((poll, close)) => poll();
+
+let run = ((poll, close)) => while (true) poll();
+
+let runAll = jobs => while (true) List.iter(f => ());
+
+let kill = ((poll, close)) => close();

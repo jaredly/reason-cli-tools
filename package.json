@@ -11,11 +11,14 @@
   "scripts": {
     "build": "bsb -make-world -backend native",
     "watch": "bsb -make-world -backend native -w",
-    "clean": "bsb -clean-world"
+    "clean": "bsb -clean-world",
+    "js": "bsb -make-world -backend js",
+    "js:watch": "bsb -make-world -backend js -w"
   },
-  "// js": "bsb -make-world -backend js",
-  "// js:watch": "bsb -make-world -backend js -w",
   "devDependencies": {
     "bs-platform": "bsansouci/bsb-native#fast"
+  },
+  "dependencies": {
+    "matchenv": "github:bsansouci/matchenv"
   }
 }

@@ -1,9 +1,9 @@
 {
   "name": "reason-cli-tools",
-  "namespace": true,
+  // "namespace": true,
   "bsc-flags": "-w -27 -g",
   "warnings": {
-    "number": "-40+6+7-26-27+32..39-28-44+45",
+    "number": "-40+6+7-26-27+32..39-28-44+45-102",
     "error": "+8",
   },
   "sources": [
@@ -14,12 +14,13 @@
     ]},
     {"dir": "test", "type": "dev"},
   ],
+  "ppx-flags": ["./node_modules/matchenv/matchenv"],
   "entries": [{
     "backend": "native",
-    "main-module": "Test"
+    "main-module": "Test_native"
   }, {
     "backend": "js",
-    "main-module": "Test"
+    "main-module": "Test_js"
   }],
   "refmt": 3
 }

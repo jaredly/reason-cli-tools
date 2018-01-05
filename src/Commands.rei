@@ -1,11 +1,13 @@
 
+type job;
+ /* = (unit => unit, unit => unit); */
 
 /**
  * Get the output of a command, in lines, and whether it succeeded.
  */
 let execSync: (~cmd: string, ~onOut: string => unit=?, unit) => (list(string), bool);
 
-let exec: (~cmd: string, ~onOut: string => unit) => Async.job;
+let exec: (~cmd: string, ~onOut: string => unit) => job;
 
 /**
  * Returns a poll function, and a close function. Checks every `checkInterval`
@@ -22,4 +24,17 @@ let keepAlive:
     ~onStart: unit => unit=?,
     ~checkInterval: float=?,
     unit
-  ) => Async.job;
+  ) => job;
+
+let kill: job => unit;
+let poll: job => unit;
+
+/**
+ * Run an async command until it exits.
+ */
+let run: job => unit;
+
+/**
+ * Run multiple async commands in parallel until they all exit.
+ */
+let runAll: list(job) => unit;
