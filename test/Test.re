@@ -1,11 +1,28 @@
 
-let ensure = (bool, message) => if (!bool) {
-  print_endline("Failed: " ++ message)
+let tests = ref(0);
+let failures = ref(0);
+
+let ensure = (bool, message) => {
+  tests := tests^ + 1;
+  if (!bool) {
+    print_endline("Failed: " ++ message);
+    failures := failures^ + 1;
+  };
+};
+
+let report = () => {
+  print_newline();
+  if (failures^ == 0) {
+    print_endline("Success! All " ++ string_of_int(tests^) ++ " tests passed")
+  } else {
+    print_endline("Failures: " ++ string_of_int(failures^) ++ " / " ++ string_of_int(tests^))
+  }
 };
 
 /* Normal command */
 let (lines, succeeded) = Commands.readCommand(~cmd="echo 'hi'", ());
-print_endline(String.concat("\n", lines));
+ensure(lines == ["hi"], "echo outputs hi");
+ensure(succeeded, "echo exited successfully");
 
 /* Pollable command */
 let (poll, close) = Commands.pollableCommand(~cmd="yes", ~onOut=line => ());
@@ -16,12 +33,23 @@ while (Unix.gettimeofday() -. t < 0.01) {
 close();
 
 /* Keepalive */
-let (poll, close) = Commands.keepAlive(~cmd="yes", ~checkTime=0.01, ~onStart=() => print_endline("(re)starting"), ());
+let starts = ref(0);
+let (poll, close) = Commands.keepAlive(~cmd="yes", ~checkInterval=0.01, ~onStart=() => starts := starts^ + 1, ());
 let t = Unix.gettimeofday();
 while (Unix.gettimeofday() -. t < 0.2) {
   poll();
 };
 close();
+ensure(starts^ == 1, "yes starts only once");
+
+let starts = ref(0);
+let (poll, close) = Commands.keepAlive(~cmd="echo 'hi'", ~checkInterval=0.05, ~onStart=() => starts := starts^ + 1, ());
+let t = Unix.gettimeofday();
+while (Unix.gettimeofday() -. t < 0.2) {
+  poll();
+};
+close();
+ensure(starts^ > 1, "echo starts a bunch");
 
 ensure(Files.exists("./"), "directory exists");
 ensure(Files.exists("./bsconfig.json"), "file exists");
@@ -50,3 +78,7 @@ ensure(Files.readFile(tmpCopy /+ deep) == Some(deepContents), "write & read a fi
 
 Files.removeDeep(tmp);
 Files.removeDeep(tmpCopy);
+ensure(!Files.exists(tmp), "tmp removed");
+ensure(!Files.exists(tmpCopy), "tmp copy removed");
+
+report();

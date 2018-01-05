@@ -54,7 +54,7 @@ let isAlive = (pid) => {
   p === 0
 };
 
-let keepAlive = (~cmd, ~onOut=line => (), ~onErr=line => (), ~onStart=() => (), ~checkTime=1., ()) => {
+let keepAlive = (~cmd, ~onOut=line => (), ~onErr=line => (), ~onStart=() => (), ~checkInterval=1., ()) => {
   let buffer_size = 8192;
   let buffer = Bytes.create(buffer_size);
   let start = () => {
@@ -83,7 +83,7 @@ let keepAlive = (~cmd, ~onOut=line => (), ~onErr=line => (), ~onStart=() => (), 
         onErr(got)
       }
     };
-    if (Unix.gettimeofday() -. lastCheck^ > checkTime) {
+    if (Unix.gettimeofday() -. lastCheck^ > checkInterval) {
       lastCheck := Unix.gettimeofday();
       if (! isAlive(pid)) {
         process := start()
