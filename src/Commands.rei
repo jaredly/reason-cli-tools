@@ -1,6 +1,5 @@
 
 type job;
- /* = (unit => unit, unit => unit); */
 
 /**
  * Get the output of a command, in lines, and whether it succeeded.
