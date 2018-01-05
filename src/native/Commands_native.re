@@ -103,6 +103,6 @@ let poll = ((poll, close)) => poll();
 
 let run = ((poll, close)) => while (true) poll();
 
-let runAll = jobs => while (true) List.iter(f => ());
+let runAll = jobs => while (true) List.iter(f => (), jobs);
 
 let kill = ((poll, close)) => close();
