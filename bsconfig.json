@@ -9,7 +9,7 @@
   "sources": [
     {"dir": "src",
     "subdirs": [
-      {"backend": "native", "dir": "native"},
+      {"backend": ["native", "bytecode"], "dir": "native"},
       {"backend": "js", "dir": "js"}
     ]},
     {"dir": "test", "type": "dev"},
@@ -17,6 +17,9 @@
   "ppx-flags": ["matchenv/matchenv"],
   "entries": [{
     "backend": "native",
+    "main-module": "Test_native"
+  }, {
+    "backend": "bytecode",
     "main-module": "Test_native"
   }, {
     "backend": "js",

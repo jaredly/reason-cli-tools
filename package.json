@@ -1,6 +1,6 @@
 {
   "name": "reason-cli-tools",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "keywords": [
     "BuckleScript",
     "OCaml",
@@ -10,6 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "bsb -make-world -backend native",
+    "byte": "bsb -make-world -backend bytecode",
     "watch": "bsb -make-world -backend native -w",
     "clean": "bsb -clean-world",
     "js": "bsb -make-world -backend js",
