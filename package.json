@@ -18,8 +18,5 @@
   },
   "devDependencies": {
     "bs-platform": "bsansouci/bsb-native#2.1.1"
-  },
-  "dependencies": {
-    "matchenv": "github:bsansouci/matchenv"
   }
 }
