@@ -14,7 +14,6 @@
     ]},
     {"dir": "test", "type": "dev"},
   ],
-  "ppx-flags": ["matchenv/matchenv"],
   "entries": [{
     "backend": "native",
     "main-module": "Test_native"

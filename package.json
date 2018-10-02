@@ -17,9 +17,6 @@
     "js:watch": "bsb -make-world -backend js -w"
   },
   "devDependencies": {
-    "bs-platform": "bsansouci/bsb-native#2.1.1"
-  },
-  "dependencies": {
-    "matchenv": "github:bsansouci/matchenv"
+    "bsb-native": "4.0.6"
   }
 }
